@@ -1,5 +1,130 @@
 *{
     padding:0;
     margin:0;
+    box-sizing: border-box;
 }
 
+.app{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5rem;
+}
+
+.calculatorApp {
+    background-color: rgb(13, 4, 114);
+    width: 100%;
+    max-width: 300px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 4%;
+    overflow: hidden;
+}
+
+.display {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+    color: whitesmoke;
+    margin: 0.66rem;
+    background-color: rgba(19, 4, 181, 0.919);
+    padding-bottom: 0.5rem;
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+}
+
+.display input {
+    border: none;
+    background: transparent;
+    font-size: 0.75rem;
+    width: calc(100% - 20px);
+    max-width: 100%;
+    margin: 0.25rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    align-self: flex-end;
+    direction: rtl;
+    color: #fff;
+}
+
+.display input.downScreen {
+    font-size: 1.25rem;
+    width: 100%;
+    max-width: 100%;
+    color: #fff;
+}
+
+
+.keyboard {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem;
+}
+
+.keyboard .row {
+    display: flex;
+    border-radius: 0.5rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.keyboard .mainBoard .row:nth-child(2) {
+    padding-top: 1rem;
+}
+
+.keyboard .key {
+    width: 40px;
+    height: 40px;
+    border: 1px solid #ffffff;
+    margin: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.1); 
+    transition: background-color 0.3s ease;
+}
+
+.keyboard .key:hover {
+    background-color: rgba(255, 255, 255, 0.3); 
+}
+
+.keyboard .key:active {
+    background-color: rgba(255, 255, 255, 0.5); 
+}
+
+.keyboard .mainBoard .key {
+    border-radius: 5px; 
+}
+
+.keyboard .mainBoard .row:nth-child(1) .key{
+    background-color: rgba(237, 139, 219, 0.701);
+    color: #000000;
+    width: 30px;
+    height: 30px;
+    font-weight: 700;
+    font-size: 60%;
+    border-radius: 50%;
+}
+
+.keyboard .mainBoard .row:nth-child(2) .key{
+    background-color: rgb(255, 0, 0);
+    width: 45px;
+    height: 40px;
+    font-weight: 900;
+    border-radius: 0%;
+    color: #000000;
+}
+
+.keyboard .mainBoard .row:nth-child(2) .key:nth-child(3){
+    background-color: #ffffff;
+}
+
+.keyboard .sOperatorBoard .key {
+    border-radius: 50%; 
+    background-color: rgba(255, 225, 103, 0.759);
+}
