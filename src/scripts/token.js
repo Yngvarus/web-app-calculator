@@ -1,3 +1,11 @@
+const sOperatorLayout = Object.freeze([
+	['±', '%'],
+	['÷', '√(x)'],
+	['×', '(x)²'],
+	['-', '('],
+	['+', ')'],
+]);
+
 class Token {
 
     static TokenType = Object.freeze({
@@ -20,12 +28,17 @@ class Token {
 
     static StringToToken(str) {
         if (!isNaN(parseFloat(str))) {
-            //number
+            // Se è un numero
+            return new numToken(parseFloat(str));
+        } else if (OptToken.bracket.includes(str) || sOperatorLayout.includes(str)) {
+            // Se è un operatore o una parentesi
+            return new OptToken(str);
         } else {
-            //else
+            throw new Error("Invalid token string: " + str);
         }
     }
 }
+
 
 class numToken extends Token {
     constructor(value){
@@ -107,12 +120,3 @@ class OptToken extends Token {
     }
 }
 
-class Calculator {
-    constructor() {
-        this.expression = [];
-        this.aboveScreen = " ";
-        this.belowScreen = " ";
-        this.inputN = " ";
-        this.lastOperator = " ";
-    }
-}
