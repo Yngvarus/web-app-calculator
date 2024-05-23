@@ -57,7 +57,7 @@ class CalculatorCPU {
                         stack.push(params[0] / params[1]);
                         break;
                     case '±':
-                        stack.push(-params[0]);
+                        //da gestire prima
                         break;
                     case '√(x)':
                         stack.push(Math.sqrt(params[0]));
