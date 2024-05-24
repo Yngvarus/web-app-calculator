@@ -1,41 +1,47 @@
 const mainBoardLayout = Object.freeze([
-	["M", "M+", "M-"],
-	[ "AC", "C", "="],
-	['7', '8', '9'],
-	['4', '5', '6'],
-	['1', '2', '3'],
+    ["M", "M+", "M-"],
+    ["AC", "C", "="],
+    ['7', '8', '9'],
+    ['4', '5', '6'],
+    ['1', '2', '3'],
     ['.', '0', '00']
 ]);
 
 const sOperatorLayout = Object.freeze([
-	['±', '%'],
-	['÷', '√(x)'],
-	['×', '(x)²'],
-	['-', '('],
-	['+', ')'],
+    ['±', '%'],
+    ['÷', '√(x)'],
+    ['×', '(x)²'],
+    ['-', '('],
+    ['+', ')'],
 ]);
 
 function generateKeyboard(mainBoardLayout, sOperatorLayout) {
-    var mainBoardElement = document.getElementById('mainBoard');
-    var sOperatorBoardElement = document.getElementById('sOperationBoard');
+    const mainBoardElement = document.getElementById('mainBoard');
+    const sOperatorBoardElement = document.getElementById('sOperationBoard');
 
+    if (!mainBoardElement || !sOperatorBoardElement) {
+        console.error('Elementi della board non trovati');
+        return;
+    }
+
+    console.log("prima funzione");
     function generateBoard(layout, boardElement) {
-        for (let rowIndex = 0; rowIndex < layout.length; rowIndex++) {
-            const row = layout[rowIndex];
-            var rowElement = document.createElement('div');
+        layout.forEach(row => {
+            const rowElement = document.createElement('div');
             rowElement.classList.add('row');
-
-            row.forEach(function(key) {
-                var keyElement = document.createElement('button');
-                keyElement.classList.add('key');
+            console.log("foreach row");
+            row.forEach(key => {
+                console.log("foreach key");
+                const keyElement = document.createElement('button');
+                keyElement.classList.add('key', 'btn');
                 keyElement.textContent = key;
                 keyElement.setAttribute('data-value', key);
 
                 if (boardElement === sOperatorBoardElement) {
                     keyElement.id = 'sOperation';
-                } else if (rowIndex === 0) {
+                } else if (row.indexOf(key) === 0) {
                     keyElement.id = 'memory';
-                } else if (rowIndex === 1) {
+                } else if (row.indexOf(key) === 1) {
                     keyElement.id = 'function';
                 } else {
                     keyElement.id = 'digit';
@@ -43,29 +49,15 @@ function generateKeyboard(mainBoardLayout, sOperatorLayout) {
 
                 rowElement.appendChild(keyElement);
             });
-
             boardElement.appendChild(rowElement);
-        }
+        });
     }
 
     generateBoard(mainBoardLayout, mainBoardElement);
     generateBoard(sOperatorLayout, sOperatorBoardElement);
 }
 
-generateKeyboard(mainBoardLayout, sOperatorLayout);
-
-document.querySelectorAll('.btn').forEach(button => {
-    button.addEventListener('click', () => {
-        const id = button.getElementId();
-        switch(id) {
-            case 'sOperation':
-                break;
-            case 'function':
-                break;
-            case 'digit':
-                break;
-            case 'memory':
-                break;
-        }
-    });
+document.addEventListener('DOMContentLoaded', () => {
+    generateKeyboard(mainBoardLayout, sOperatorLayout);
+    const calculator = new Calculator();
 });

@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel='stylesheet' href='style.css'/>
-    <script src='scripts/script.js' defer></script>
+
     <title>Calculator</title>
 </head>
 <body>
     <div class="app" id="app">
         <div class="calculatorApp" id="calculatorApp">
             <div class="display" id="display">
-                <input type="text" class="upperScreen" id="upperScreen" value="1234567890123456789012345" readonly>
-                <input type="text" class="downScreen" id="downScreen" value="1234567890123456789012345" readonly>
+                <input type="text" class="upperScreen" id="upperScreen" readonly>
+                <input type="text" class="downScreen" id="downScreen" readonly>
             </div>
             
             <div class="keyboard" id="keyboard">
@@ -21,5 +21,9 @@
             </div>
         </div>
     </div>
+    <script src='scripts/token.js' defer></script>
+    <script src='scripts/calculatorCPU.js' defer></script>
+    <script src='scripts/calculator.js' defer></script>
+    <script src='scripts/script.js' defer></script>
 </body>
 </html>

@@ -1,10 +1,9 @@
 class CalculatorCPU {
-
     constructor() {}
 
     toRPN(tokens) {
-        let output = [];
-        let operatorStack = [];
+        const output = [];
+        const operatorStack = [];
 
         tokens.forEach(token => {
             if (token.tokenType === Token.TokenType.NUM) {
@@ -33,13 +32,13 @@ class CalculatorCPU {
     }
 
     evaluateShuntingYard(tokens) {
-        let stack = [];
+        const stack = [];
 
         tokens.forEach(token => {
             if (token.tokenType === Token.TokenType.NUM) {
                 stack.push(token.value);
             } else if (token.tokenType === Token.TokenType.OPT) {
-                let params = [];
+                const params = [];
                 for (let i = 0; i < token.parameterCount; i++) {
                     params.unshift(stack.pop());
                 }
@@ -57,20 +56,19 @@ class CalculatorCPU {
                         stack.push(params[0] / params[1]);
                         break;
                     case '±':
-                        //da gestire prima
+                        // Gestire il caso ±
                         break;
                     case '√(x)':
                         stack.push(Math.sqrt(params[0]));
                         break;
                     case '(x)²':
-                        stack.push(params[0] * params[0]);
+                        stack.push(params[0] ** 2);
                         break;
                     default:
                         throw new Error("Invalid operator: " + token.symbol);
                 }
             }
         });
-
         return stack.pop();
     }
 }
